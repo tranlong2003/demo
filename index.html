@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Dịch vụ MXH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md">
+      <div class="p-4 border-b text-xl font-bold text-blue-600">W3 CRM</div>
+      <nav class="p-4 space-y-2">
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Trang chủ</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Tài khoản của tôi</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Nạp tiền tài khoản</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Website riêng & API</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Bảng giá & cấp bậc</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Lịch sử giao dịch</a>
+        <div class="mt-4 font-semibold text-sm text-gray-500">Sản phẩm & Dịch vụ</div>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Dịch vụ Facebook</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Dịch vụ Instagram</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 rounded">Dịch vụ TikTok</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Dịch vụ Facebook</h1>
+        <div class="bg-white shadow rounded p-4 w-64 text-center">
+          <div class="text-gray-500 mb-2">Chưa đăng nhập</div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <div>Số dư:<br><span class="text-green-500">0 VND</span></div>
+            <div>Đã nạp:<br><span class="text-blue-500">0 VND</span></div>
+          </div>
+          <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded">Đăng nhập tài khoản</button>
+        </div>
+      </div>
+
+      <!-- Service Boxes -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">👍</div>
+          <div class="mt-2 font-medium">Tăng like bài viết</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">💬</div>
+          <div class="mt-2 font-medium">Tăng bình luận</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">➕👤</div>
+          <div class="mt-2 font-medium">Tăng theo dõi</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">📄</div>
+          <div class="mt-2 font-medium">Tăng like page</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">👥</div>
+          <div class="mt-2 font-medium">Tăng member group</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">🔴</div>
+          <div class="mt-2 font-medium">Tăng mắt live</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">📽️</div>
+          <div class="mt-2 font-medium">Tăng view story</div>
+        </div>
+        <div class="bg-white p-4 shadow rounded text-center hover:shadow-lg transition">
+          <div class="text-3xl">👁️</div>
+          <div class="mt-2 font-medium">Tăng view video</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
