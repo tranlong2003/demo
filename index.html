@@ -1,89 +1,90 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SubGiare.vn Clone UI</title>
+  <title>Catch the Fruit Game</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    * { box-sizing: border-box; }
+    canvas { background: #e0f7fa; display: block; margin: 0 auto; border: 4px solid #0288d1; }
   </style>
 </head>
-<body class="bg-gray-100">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md">
-      <div class="p-4 border-b text-2xl font-bold text-blue-600">W3 CRM</div>
-      <nav class="p-4 space-y-2 text-sm">
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100 font-medium">Trang chủ</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Tài khoản của tôi</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Nạp tiền tài khoản</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Website & API</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Bảng giá & cấp bậc</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Lịch sử giao dịch</a>
-
-        <div class="mt-4 font-semibold text-gray-500">Sản phẩm & Dịch vụ</div>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ Facebook</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ Instagram</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ TikTok</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ Youtube</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ Shopee</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-blue-100">Dịch vụ Lazada</a>
-      </nav>
-    </aside>
-
-    <!-- Main content -->
-    <main class="flex-1 p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-700">Dịch vụ Facebook</h1>
-        <div class="bg-white shadow rounded-lg p-4 w-64 text-center">
-          <div class="text-gray-500 mb-1 text-sm">Chưa đăng nhập</div>
-          <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full mb-2"></div>
-          <div class="flex justify-between text-xs text-gray-600">
-            <div>Số dư:<br><span class="text-green-500 font-medium">0 VND</span></div>
-            <div>Đã nạp:<br><span class="text-blue-500 font-medium">0 VND</span></div>
-          </div>
-          <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 text-sm">Đăng nhập</button>
-        </div>
-      </div>
-
-      <!-- Service boxes -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">👍</div>
-          <div class="mt-2 text-sm font-medium">Tăng like bài viết</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">💬</div>
-          <div class="mt-2 text-sm font-medium">Tăng bình luận</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">➕👤</div>
-          <div class="mt-2 text-sm font-medium">Tăng theo dõi</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">📄</div>
-          <div class="mt-2 text-sm font-medium">Tăng like page</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">👥</div>
-          <div class="mt-2 text-sm font-medium">Tăng member group</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">🔴</div>
-          <div class="mt-2 text-sm font-medium">Tăng mắt live</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">📽️</div>
-          <div class="mt-2 text-sm font-medium">Tăng view story</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg text-center">
-          <div class="text-4xl">👁️</div>
-          <div class="mt-2 text-sm font-medium">Tăng view video</div>
-        </div>
-      </div>
-    </main>
+<body class="bg-blue-50 min-h-screen flex flex-col items-center justify-start py-8">
+  <h1 class="text-3xl font-bold text-blue-800 mb-4">Catch the Fruit 🍓🍌🍎</h1>
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <div class="mt-4 text-center">
+    <button onclick="startGame()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Bắt đầu chơi</button>
+    <p class="mt-2 text-lg">Điểm: <span id="score">0</span></p>
   </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const basket = { x: 160, y: 550, width: 80, height: 20 };
+    const fruits = ["🍎", "🍌", "🍓", "🍒", "🍇"];
+    let fallingFruits = [];
+    let score = 0;
+    let gameRunning = false;
+
+    function drawBasket() {
+      ctx.fillStyle = "#4caf50";
+      ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+    }
+
+    function drawFruit(fruit) {
+      ctx.font = "30px Arial";
+      ctx.fillText(fruit.emoji, fruit.x, fruit.y);
+    }
+
+    function updateFruits() {
+      for (let i = 0; i < fallingFruits.length; i++) {
+        const fruit = fallingFruits[i];
+        fruit.y += fruit.speed;
+
+        // Check if caught
+        if (
+          fruit.y >= basket.y &&
+          fruit.x > basket.x &&
+          fruit.x < basket.x + basket.width
+        ) {
+          score++;
+          fallingFruits.splice(i, 1);
+          document.getElementById("score").innerText = score;
+        } else if (fruit.y > canvas.height) {
+          fallingFruits.splice(i, 1);
+        }
+      }
+    }
+
+    function spawnFruit() {
+      const emoji = fruits[Math.floor(Math.random() * fruits.length)];
+      const x = Math.random() * (canvas.width - 30);
+      fallingFruits.push({ x, y: 0, emoji, speed: 2 + Math.random() * 2 });
+    }
+
+    function draw() {
+      if (!gameRunning) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBasket();
+      fallingFruits.forEach(drawFruit);
+      updateFruits();
+      requestAnimationFrame(draw);
+    }
+
+    function startGame() {
+      score = 0;
+      fallingFruits = [];
+      document.getElementById("score").innerText = score;
+      gameRunning = true;
+      setInterval(spawnFruit, 1000);
+      draw();
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      basket.x = e.clientX - rect.left - basket.width / 2;
+    });
+  </script>
 </body>
 </html>
