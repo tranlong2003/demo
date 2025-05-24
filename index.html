@@ -19,72 +19,99 @@
   </div>
 
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    const basket = { x: 160, y: 550, width: 80, height: 20 };
-    const fruits = ["🍎", "🍌", "🍓", "🍒", "🍇"];
-    let fallingFruits = [];
-    let score = 0;
-    let gameRunning = false;
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const basket = { x: 160, y: 550, width: 80, height: 20, speed: 0 };
+  const fruits = ["🍎", "🍌", "🍓", "🍒", "🍇"];
+  let fallingFruits = [];
+  let score = 0;
+  let gameRunning = false;
+  let timeLeft = 30; // Thời gian chơi (giây)
 
-    function drawBasket() {
-      ctx.fillStyle = "#4caf50";
-      ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
-    }
+  function drawBasket() {
+    ctx.fillStyle = "#4caf50";
+    ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+  }
 
-    function drawFruit(fruit) {
-      ctx.font = "30px Arial";
-      ctx.fillText(fruit.emoji, fruit.x, fruit.y);
-    }
+  function drawFruit(fruit) {
+    ctx.font = "30px Arial";
+    ctx.fillText(fruit.emoji, fruit.x, fruit.y);
+  }
 
-    function updateFruits() {
-      for (let i = 0; i < fallingFruits.length; i++) {
-        const fruit = fallingFruits[i];
-        fruit.y += fruit.speed;
+  function updateFruits() {
+    for (let i = 0; i < fallingFruits.length; i++) {
+      const fruit = fallingFruits[i];
+      fruit.y += fruit.speed;
 
-        // Check if caught
-        if (
-          fruit.y >= basket.y &&
-          fruit.x > basket.x &&
-          fruit.x < basket.x + basket.width
-        ) {
-          score++;
-          fallingFruits.splice(i, 1);
-          document.getElementById("score").innerText = score;
-        } else if (fruit.y > canvas.height) {
-          fallingFruits.splice(i, 1);
-        }
+      // Check if caught
+      if (
+        fruit.y >= basket.y &&
+        fruit.x > basket.x &&
+        fruit.x < basket.x + basket.width
+      ) {
+        score++;
+        fallingFruits.splice(i, 1);
+        document.getElementById("score").innerText = score;
+      } else if (fruit.y > canvas.height) {
+        fallingFruits.splice(i, 1);
       }
     }
+  }
 
-    function spawnFruit() {
-      const emoji = fruits[Math.floor(Math.random() * fruits.length)];
-      const x = Math.random() * (canvas.width - 30);
-      fallingFruits.push({ x, y: 0, emoji, speed: 2 + Math.random() * 2 });
-    }
+  function spawnFruit() {
+    const emoji = fruits[Math.floor(Math.random() * fruits.length)];
+    const x = Math.random() * (canvas.width - 30);
+    fallingFruits.push({ x, y: 0, emoji, speed: 2 + Math.random() * 2 });
+  }
 
-    function draw() {
-      if (!gameRunning) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawBasket();
-      fallingFruits.forEach(drawFruit);
-      updateFruits();
-      requestAnimationFrame(draw);
-    }
+  function draw() {
+    if (!gameRunning) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBasket();
+    fallingFruits.forEach(drawFruit);
+    updateFruits();
 
-    function startGame() {
-      score = 0;
-      fallingFruits = [];
-      document.getElementById("score").innerText = score;
-      gameRunning = true;
-      setInterval(spawnFruit, 1000);
-      draw();
-    }
+    // Di chuyển giỏ mượt mà
+    basket.x += basket.speed;
+    if (basket.x < 0) basket.x = 0;
+    if (basket.x + basket.width > canvas.width)
+      basket.x = canvas.width - basket.width;
 
-    document.addEventListener("mousemove", (e) => {
-      const rect = canvas.getBoundingClientRect();
-      basket.x = e.clientX - rect.left - basket.width / 2;
-    });
-  </script>
+    requestAnimationFrame(draw);
+  }
+
+  function startGame() {
+    score = 0;
+    fallingFruits = [];
+    timeLeft = 30; // Reset thời gian chơi
+    document.getElementById("score").innerText = score;
+    gameRunning = true;
+
+    setInterval(spawnFruit, 1000);
+    const timer = setInterval(() => {
+      if (!gameRunning) {
+        clearInterval(timer);
+        return;
+      }
+      timeLeft--;
+      if (timeLeft <= 0) {
+        gameRunning = false;
+        alert(`Hết giờ! Điểm của bạn là: ${score}`);
+      }
+    }, 1000);
+
+    draw();
+  }
+
+  // Thêm điều khiển bằng phím
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") basket.speed = -5;
+    if (e.key === "ArrowRight") basket.speed = 5;
+  });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") basket.speed = 0;
+  });
+</script>
 </body>
 </html>
